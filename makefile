@@ -1,19 +1,16 @@
 CC = g++
 GFLAG = -g
 CFLAG = -c
+C11FLAG = -std=c++11
 
-default: main.o point2d.o point3d.o
-	$(CC) build/main.o build/point2d.o build/point3d.o -o bin/out
+default: main.o point.o
+	$(CC) build/main.o build/point.o -o bin/out
 
 main.o: src/main.cc
-	$(CC) $(CFLAG) src/main.cc -o build/main.o
+	$(CC) $(CFLAG) $(C11FLAG) src/main.cc -o build/main.o
 
-point2d.o: src/point2d.cc
-	$(CC) $(CFLAG) src/point2d.cc -o build/point2d.o
-
-point3d.o: src/point3d.cc
-	$(CC) $(CFLAG) src/point3d.cc -o build/point3d.o
+point.o: src/point.cc
+	$(CC) $(CFLAG) $(C11FLAG) src/point.cc -o build/point.o
 
 clean:
 	rm build/*.o bin/out
-
