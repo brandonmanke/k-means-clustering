@@ -1,6 +1,12 @@
 #include "point.h"
 
-Point::Point(const std::vector<int>& vec) {
+Point::Point() {
+    std::vector<int> v;
+    this->vec = v;
+    this->dimension = 0;
+}
+
+Point::Point(const std::vector<int> vec) {
     /*for (int i = 0; i < vec.size(); i++) {
         std::cout << "Test" << std::endl;
         this->vec.push_back(vec.at(i));
@@ -78,4 +84,25 @@ int Point::SetIndex(const int index, const int val) {
 
 int Point::GetDimension() const {
     return this->dimension;
+}
+
+std::string Point::ToString() const {
+    std::stringstream ss;
+    ss << "[ ";
+    for (int i = 0; i < this->vec.size() -1; i++) {
+        ss << this->vec.at(i) << ", ";
+    }
+    ss << this->vec.at(this->vec.size() - 1) << " ]";
+    std::string str = ss.str();
+    return str;
+}
+
+Point Point::RandomPoint(const int dimension) {
+    std::vector<int> vec(dimension);
+    for (int i = 0; i < dimension; i++) {
+        int r = std::rand() % 999; // 0 and 999 for now
+        vec.at(i) = r;
+    }
+    Point:Point p(vec);
+    return p;
 }

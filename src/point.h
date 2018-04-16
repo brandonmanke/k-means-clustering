@@ -4,10 +4,12 @@
 #include <vector>
 #include <cmath>
 #include <iostream>
+#include <sstream>
 
 class Point {
 public:
-    Point(const std::vector<int>& vec);
+    Point();
+    Point(const std::vector<int> vec);
     //Point(const int dimensions);
     Point(const int x, const int y);
     Point(const int x, const int y, const int z);
@@ -19,6 +21,7 @@ public:
     int SetIndex(const int index, const int val);
     int GetDimension() const;
     std::string ToString() const;
+    Point RandomPoint(const int dimension);
 private:
     std::vector<int> vec;
     int dimension;
