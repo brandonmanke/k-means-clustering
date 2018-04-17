@@ -43,7 +43,7 @@ Clusters Matrix::KMeansClustering(const int k) const {
     std::vector<Point::Point> centroids(k);
     // place k centroids
     Point::Point p;
-    for (int i = 0; i < centroids.size(); i++) {
+    for (int i = 0; i < k; i++) {
         // randomly generate points (make sure same dimensions as matrix)
         centroids.at(i) = p.RandomPoint(this->rowCount);
     }
@@ -60,7 +60,7 @@ Clusters Matrix::KMeansClustering(const int k) const {
         int minDistance = std::numeric_limits<int>::max();
         int minCentroidIndex = -1;
         // find minimum distance between point and every centroid
-        for (int j = 0; j < centroids.size(); j++) {
+        for (int j = 0; j < k; j++) {
             int dist = p.Distance(centroids.at(j));
             if (dist < minDistance) {
                 minDistance = dist;
@@ -72,10 +72,22 @@ Clusters Matrix::KMeansClustering(const int k) const {
 
     // for each cluster we find new centroids
     // as the mean of all points in each cluster
-    //for (int i = 0; i < k; i++) {
-
-    //}
-
+    for (int i = 0; i < k; i++) {
+        std::vector<Point::Point> cluster = clust.at(i);
+        Point::Point sum;
+        for (int j = 0; j < cluster.size() - 1; j++) {
+            Point::Point current = cluster.at(j);
+            Point::Point next = cluster.at(j + 1);
+            //sum += current.Sum(cluster.at(j + 1));
+            sum = sum + (current + next);
+        }
+        // since we are using ints right now this isn't as accurate
+        Point::Point average = sum.Scale(1 / cluster.size());
+        // Replace new averaged centroid
+        centroids.at(i) = average;
+    }
+    // Pass updated centroids to function again 
+    // (also think of some type of base case / limit)
     return clust;
 }
 

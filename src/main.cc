@@ -14,8 +14,13 @@ int main(void) {
     Matrix::Matrix m;
     m = m.GenerateRandomMatrix(4, 5);
     std::vector<int> v = { 1, 2, 3 };
+    std::vector<int> v2 = { 2, 3, 0 };
     Point::Point p(v);
-    std::cout << p.ToString() << std::endl << std::endl;
+    Point::Point p2(v2);
+    std::cout << "Point p: " << p.ToString() << std::endl;
+    std::cout << "Point p2: " << p2.ToString() << std::endl << std::endl;
+    Point::Point sum = p + p2;
+    std::cout << "p + p2: " << sum.ToString() << std::endl << std::endl;
     std::cout << m.ToString() << std::endl;
     //Clusters c = m.KMeansClustering(2);
     /*for (int i = 0; i < c.size(); i++) {

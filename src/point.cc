@@ -34,7 +34,12 @@ Point::Point(const int x, const int y, const int z) {
 
 //Point::~Point() { }
 
-Point Point::Sum(const Point::Point& point) const {
+//Point Point::Sum(const Point::Point& point) const { }
+
+/**
+ * Point / Vector addition
+ */
+Point Point::operator +(const Point& point) const {
     if (this->dimension != point.dimension) {
         std::cerr << "Cannot sum vectors of different dimensions" << std::endl;
         throw std::exception();
@@ -46,6 +51,18 @@ Point Point::Sum(const Point::Point& point) const {
     }
     Point p(newVec);
     return p;
+}
+
+/**
+ * Scalar multiplication for point/vector
+ */
+Point Point::Scale(const int scalar) const {
+    std::vector<int> newVec = this->vec;
+    for (int i = 0; i < newVec.size(); i++) {
+        newVec.at(i) *= scalar;
+    }
+    Point scaledPoint(newVec);
+    return scaledPoint;
 }
 
 // Euclidean distance

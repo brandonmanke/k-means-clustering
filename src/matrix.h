@@ -13,7 +13,6 @@
 // Although Clusters do not necessarily have all rows of the same length
 typedef std::vector<std::vector<Point::Point>> Clusters;
 
-// Do I even need a matrix? I am pretty sure I dont lmfao
 class Matrix {
 public:
     Matrix();

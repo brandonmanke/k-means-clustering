@@ -13,7 +13,9 @@ public:
     //Point(const int dimensions);
     Point(const int x, const int y);
     Point(const int x, const int y, const int z);
+    Point operator +(const Point& p) const;
     Point Sum(const Point& point) const;
+    Point Scale(const int scalar) const;
     // Euclidean distance
     int Distance(const Point& point) const;
     std::vector<int> GetVector() const;
