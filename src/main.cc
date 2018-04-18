@@ -1,7 +1,8 @@
 /**
  * K Means Clustering implementation in C++
- * 
- * Consider making Point2D and Point3D into one combined class for N-Dimensional Points
+ * TODO:
+ * Implement loss function
+ * Unit Testing
  */
 #include <iostream>
 #include <cstdlib>
@@ -9,7 +10,6 @@
 #include "point.h"
 #include "matrix.h"
 
-// for readme https://pastebin.com/Sw6dnbF6
 int main(void) {
     std::srand(std::time(NULL));
     Matrix::Matrix m;
