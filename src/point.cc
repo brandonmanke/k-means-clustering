@@ -6,6 +6,15 @@ Point::Point() {
     this->dimension = 0;
 }
 
+/**
+ * Initialize a n-dimensional 0 vector
+ */ 
+Point::Point(const int dimension) {
+    this->dimension = dimension;
+    std::vector<int> v(this->dimension);
+    this->vec = v;
+}
+
 Point::Point(const std::vector<int> vec) {
     /*for (int i = 0; i < vec.size(); i++) {
         std::cout << "Test" << std::endl;
@@ -41,6 +50,10 @@ Point::Point(const int x, const int y, const int z) {
  */
 Point Point::operator +(const Point& point) const {
     if (this->dimension != point.dimension) {
+        // We could be smart about this and take the bigger
+        // dimension and just add 0 to each number outside
+        // the dimension of the smaller vector. 
+        // return point of bigger dimension
         std::cerr << "Cannot sum vectors of different dimensions" << std::endl;
         throw std::exception();
     }
@@ -57,15 +70,30 @@ Point Point::operator +(const Point& point) const {
  * Scalar multiplication for point/vector
  */
 Point Point::Scale(const int scalar) const {
-    std::vector<int> newVec = this->vec;
+    std::vector<int> newVec(this->dimension);
     for (int i = 0; i < newVec.size(); i++) {
-        newVec.at(i) *= scalar;
+        newVec.at(i) = this->vec.at(i) * scalar;
     }
     Point scaledPoint(newVec);
     return scaledPoint;
 }
 
-// Euclidean distance
+/**
+ * Scalar multiplication for values 0 < n < 1
+ * This is only because we are using integers for everything.
+ */
+Point Point::Shrink(const int scalar) const {
+    std::vector<int> newVec(this->dimension);
+    for (int i = 0; i < newVec.size(); i++) {
+        newVec.at(i) = this->vec.at(i) / scalar;
+    }
+    Point scaledPoint(newVec);
+    return scaledPoint;
+}
+
+/**
+ * Euclidean distance
+ */
 int Point::Distance(const Point::Point& point) const {
     if (this->dimension != point.dimension) {
         std::cerr << "Cannot calculate distance of vectors of different dimensions" << std::endl;
