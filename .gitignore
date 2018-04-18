@@ -1,6 +1,7 @@
 # C++
 *.o
 out
+test_out
 
 # VS Code
 .vscode

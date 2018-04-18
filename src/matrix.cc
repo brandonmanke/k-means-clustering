@@ -98,8 +98,7 @@ std::vector<Point::Point> Matrix::AverageClusters(const int k,
             Point::Point sum(dimension); // since we can only add Points of same dimension
             for (int j = 0; j < cluster.size() - 1; j++) {
                 Point::Point current = cluster.at(j);
-                Point::Point next = cluster.at(j + 1);
-                sum = sum + (current + next);
+                sum = sum + current;
             }
             // since we are using ints right now this isn't as accurate
             Point::Point average = sum.Shrink(cluster.size());
@@ -131,7 +130,7 @@ Clusters Matrix::KMeansClustering(const int k, const int limit) const {
 
     // for each cluster we find new centroids
     // as the mean of all points in each cluster
-    centroids = AverageClusters(k, clust, centroids); // may cause issues idk
+    centroids = AverageClusters(k, clust, centroids);
 
     int iterations = 0;
     while(iterations < limit) {

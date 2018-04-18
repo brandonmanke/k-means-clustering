@@ -15,5 +15,11 @@ point.o: src/point.cc
 matrix.o: src/matrix.cc
 	$(CC) $(CFLAG) $(C11FLAG) src/matrix.cc -o build/matrix.o
 
+test: point_test.o
+	$(CC) build/point_test.o -o bin/test_out
+
+point_test.o: test/point_test.cc
+	$(CC) $(CFLAG) $(C11FLAG) test/point_test.cc -o build/point_test.o
+
 clean:
 	rm build/*.o bin/out

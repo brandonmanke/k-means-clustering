@@ -145,7 +145,7 @@ std::string Point::ToString() const {
 Point Point::RandomPoint(const int dimension) {
     std::vector<int> vec(dimension);
     for (int i = 0; i < dimension; i++) {
-        int r = std::rand() % 999; // 0 and 999 for now
+        int r = std::rand() % 9999; // 0 and 9999 for now
         vec.at(i) = r;
     }
     Point:Point p(vec);
