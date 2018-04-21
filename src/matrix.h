@@ -20,6 +20,7 @@ public:
     Matrix GenerateRandomMatrix(const int row, const int col);
     //~Matrix();
     Clusters KMeansClustering(const int k, const int limit) const;
+    int ClassifyPoint(const Point::Point& p, const Clusters& clust) const;
     std::string ToString() const;
 private:
     int rowCount;

@@ -25,5 +25,8 @@ int main(void) {
     std::cout << m.ToString() << std::endl;
     
     Clusters c = m.KMeansClustering(5, 8);
+    p = p.RandomPoint(3);
+    std::cout << "Classify p: " << p.ToString() << std::endl
+              << "Is closest to cluster: " << m.ClassifyPoint(p, c) << std::endl; 
     return 0;
 }

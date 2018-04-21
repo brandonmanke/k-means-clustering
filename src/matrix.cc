@@ -81,11 +81,9 @@ Clusters Matrix::ClusterPoints(const int k, const std::vector<Point::Point>& cen
     return clust;
 }
 
-// not sure if references are the best idea idk?
-// I mean we are only reading these inputs so..
-// return reference?
 /**
  * Calculate new centroids, based on average of clusters
+ * return reference?
  */
 std::vector<Point::Point> Matrix::AverageClusters(const int k, 
                                           const Clusters& clust, 
@@ -100,7 +98,6 @@ std::vector<Point::Point> Matrix::AverageClusters(const int k,
                 Point::Point current = cluster.at(j);
                 sum = sum + current;
             }
-            // since we are using ints right now this isn't as accurate
             Point::Point average = sum.Shrink(cluster.size());
             // Replace new averaged centroid
             newCentroids.at(i) = average;
@@ -112,9 +109,39 @@ std::vector<Point::Point> Matrix::AverageClusters(const int k,
     return newCentroids;
 }
 
-void PrintClusters(const Clusters& c) {
+/**
+ * Classify point with specific cluster
+ * returns index of cluster point is classified as. (-1 returned if error)
+ */
+int Matrix::ClassifyPoint(const Point::Point& p, const Clusters& clust) const {
+    // consider p != clusters dimension
+    if (p.GetDimension() == 0)
+        return -1;
+    
+    const int k = clust.size();
+    std::vector<Point::Point> centroids = RandomCentroids(k);
+    centroids = AverageClusters(k, clust, centroids);
+
+    if (p.GetDimension() != centroids.at(0).GetDimension())
+        return -1;
+
+    int minDistance = std::numeric_limits<int>::max();
+    int minCentroidIndex = -1;
+    for (int i = 0; i < k; i++) {
+        Point::Point currentCentroid = centroids.at(i);
+        int dist = p.Distance(currentCentroid);
+        if (dist < minDistance) {
+            minDistance = dist;
+            minCentroidIndex = i;
+        }
+    }
+    return minCentroidIndex;
+}
+
+void PrintClusters(const Clusters& c, const std::vector<Point::Point>& centroids) {
     for (int i = 0; i < c.size(); i++) {
-        std::cout << "Cluster " << i << ": " << std::endl;
+        std::cout << "Cluster " << i << ": " << "(Centroid = " 
+                  << centroids.at(i).ToString() << ")" << std::endl;
         for (int j = 0; j < c.at(i).size(); j++) {
             Point::Point p = c.at(i).at(j);
             std::cout << "Point: " << j << " - "
@@ -129,7 +156,6 @@ Clusters Matrix::KMeansClustering(const int k, const int limit) const {
     Clusters clust = ClusterPoints(k, centroids);
 
     // for each cluster we find new centroids
-    // as the mean of all points in each cluster
     centroids = AverageClusters(k, clust, centroids);
 
     int iterations = 0;
@@ -138,7 +164,7 @@ Clusters Matrix::KMeansClustering(const int k, const int limit) const {
         centroids = AverageClusters(k, clust, centroids);
         iterations++;
         std::cout << std::endl << "Iteration " << iterations << ": " << std::endl;
-        PrintClusters(clust);
+        PrintClusters(clust, centroids);
     }
     return clust;
 }
