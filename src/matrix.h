@@ -28,8 +28,8 @@ private:
     std::vector<Point> RandomCentroids(const int k) const;
     Clusters ClusterPoints(const int k, const std::vector<Point>& centroids) const;
     std::vector<Point> AverageClusters(const int k, 
-                                              const Clusters& clust, 
-                                              const std::vector<Point>& centroids) const;
+                                       const Clusters& clust, 
+                                       const std::vector<Point>& centroids) const;
 };
 
 #endif

@@ -1,9 +1,7 @@
 /**
  * K Means Clustering implementation in C++
- * TODO:
- * Implement loss function
- * Unit Testing
- * Docker
+ * @author Brandon Manke
+ * @TODO Unit Testing
  */
 #include <iostream>
 #include <cstdlib>
