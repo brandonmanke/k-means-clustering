@@ -6,8 +6,8 @@ I was inspired to implement this algorithm due to a couple of reasons. The main 
 
 ## Table of Contents
 - [Building](#building)
-- [K-Means What?](#k-means-what?)
-- [How it Works?](#how-it-works?)
+- [K-Means What?](#k-means-what)
+- [How it Works?](#how-it-works)
 - [Psuedocode](#psuedocode)
 - [Example Output](#example-output)
 - [Resources](#resources)
