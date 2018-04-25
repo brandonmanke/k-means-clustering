@@ -10,6 +10,23 @@ K-Means Clustering is considered an [Unsupervised learning algorithm](https://en
 
 [TODO]
 
+## Building
+
+Via Docker:
+```bash
+# To build the image
+docker build -t k-means-clustering .
+
+# To build and run the program
+docker run -it --rm k-means-clustering
+```
+
+Via your own compiler:
+(This may or may not work depending on your compiler)
+```bash
+make && ./bin/out
+```
+
 ## How it works?
 
 Place k random centroid points on the graph

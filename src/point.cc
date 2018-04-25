@@ -94,7 +94,7 @@ Point Point::Shrink(const int scalar) const {
 /**
  * Euclidean distance
  */
-int Point::Distance(const Point::Point& point) const {
+int Point::Distance(const Point& point) const {
     if (this->dimension != point.dimension) {
         std::cerr << "Cannot calculate distance of vectors of different dimensions" << std::endl;
         throw std::exception();
