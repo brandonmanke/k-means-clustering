@@ -5,12 +5,12 @@
 I was inspired to implement this algorithm due to a couple of reasons. The main one being [this](https://www.youtube.com/watch?v=9991JlKnFmk) video by [Siraj Raval](https://twitter.com/sirajraval). The second reason being that I am interested in understanding the fundamentals of machine learning.
 
 ## Table of Contents
-- [Building](##Building)
-- [K-Means What?](##K-Means-What?)
-- [How it Works?](##How-it-works?)
-- [Psuedocode](##Psuedocode)
-- [Example Output](##Example-Output)
-- [Resources](##Resources)
+- [Building](#building)
+- [K-Means What?](#k-means-what?)
+- [How it Works?](#how-it-works?)
+- [Psuedocode](#psuedocode)
+- [Example Output](#example-output)
+- [Resources](#resources)
 
 ## Building
 
