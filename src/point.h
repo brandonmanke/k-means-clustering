@@ -18,8 +18,7 @@ public:
     Point Sum(const Point& point) const;
     Point Scale(const int scalar) const;
     Point Shrink(const int scalar) const;
-    // Euclidean distance
-    int Distance(const Point& point) const;
+    int Distance(const Point& point) const; // Euclidean distance
     std::vector<int> GetVector() const;
     int GetIndex(const int index) const;
     int SetIndex(const int index, const int val);

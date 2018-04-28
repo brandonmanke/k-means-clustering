@@ -151,3 +151,7 @@ Is closest to cluster: 3
 - https://github.com/llSourcell/k_means_clustering
 - https://www.datascience.com/blog/k-means-clustering
 - Some Wikipedia
+
+## License 
+
+All of the software in this repository is licensed under the [MIT License](LICENSE) unless otherwise specified by 3rd party library/language/etc.
