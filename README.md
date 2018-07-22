@@ -76,7 +76,7 @@ function clusterPoints(centroids) {
             let distance = EuclideanDist(p, c)
             if (distance < min) {
                 min = distance
-                index = indesOf(c)
+                index = indexOf(c)
             }
         }
         clusters[index].add(p)
