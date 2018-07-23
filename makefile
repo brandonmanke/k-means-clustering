@@ -6,7 +6,7 @@ DOC = docker
 APP = k-means-clustering
 
 # GTEST
-GTEST_DIR = third_party/googletest-1.8.0/googletest
+GTEST_DIR = third_party/googletest/googletest
 USER_DIR = src
 BUILD_DIR = build
 TEST_DIR = test
