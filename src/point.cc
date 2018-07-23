@@ -16,10 +16,6 @@ Point::Point(const int dimension) {
 }
 
 Point::Point(const std::vector<int> vec) {
-    /*for (int i = 0; i < vec.size(); i++) {
-        std::cout << "Test" << std::endl;
-        this->vec.push_back(vec.at(i));
-    }*/
     this->vec = vec;
     this->dimension = vec.size();
 }
@@ -71,7 +67,7 @@ Point Point::operator +(const Point& point) const {
  */
 Point Point::Scale(const int scalar) const {
     std::vector<int> newVec(this->dimension);
-    for (int i = 0; i < newVec.size(); i++) {
+    for (size_t i = 0; i < newVec.size(); i++) {
         newVec.at(i) = this->vec.at(i) * scalar;
     }
     Point scaledPoint(newVec);
@@ -84,7 +80,7 @@ Point Point::Scale(const int scalar) const {
  */
 Point Point::Shrink(const int scalar) const {
     std::vector<int> newVec(this->dimension);
-    for (int i = 0; i < newVec.size(); i++) {
+    for (size_t i = 0; i < newVec.size(); i++) {
         newVec.at(i) = this->vec.at(i) / scalar;
     }
     Point scaledPoint(newVec);
@@ -134,7 +130,7 @@ int Point::GetDimension() const {
 std::string Point::ToString() const {
     std::stringstream ss;
     ss << "[ ";
-    for (int i = 0; i < this->vec.size() -1; i++) {
+    for (size_t i = 0; i < this->vec.size() -1; i++) {
         ss << this->vec.at(i) << ", ";
     }
     ss << this->vec.at(this->vec.size() - 1) << " ]";
@@ -150,6 +146,6 @@ Point Point::RandomPoint(const int dimension) {
         int r = std::rand() % 999; 
         vec.at(i) = r;
     }
-    Point:Point p(vec);
+    Point p(vec);
     return p;
 }

@@ -5,6 +5,7 @@
 #include <cmath>
 #include <iostream>
 #include <sstream>
+#include <cstdlib>
 
 class Point {
 public:

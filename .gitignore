@@ -2,6 +2,8 @@
 *.o
 out
 test_out
+point_test
+*.a
 
 # VS Code
 .vscode
