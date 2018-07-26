@@ -13,7 +13,7 @@ BUILD_DIR = build
 TEST_DIR = test
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 #-pthread unused
-CXXFLAGS += -g -Wall -Wextra -std=c++11
+CXXFLAGS += -g -Wall -Wextra -pthread
 TESTS = point_test
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
