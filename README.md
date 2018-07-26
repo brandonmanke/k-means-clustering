@@ -1,4 +1,4 @@
-# K-Means Clustering Algorithm
+# K-Means Clustering Algorithm [![Build Status](https://travis-ci.org/brandonmanke/k-means-clustering.svg?branch=master)](https://travis-ci.org/brandonmanke/k-means-clustering)
 
 > This is a basic implementation of the [K-Means Clustering Algorithm](https://en.wikipedia.org/wiki/K-means_clustering) written in C++.
 
