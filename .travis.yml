@@ -1,5 +1,6 @@
 language: cpp
 install: make install
 compiler: gcc
-script: make && make test && ./bin/point_test
+script: 
+  - make && make test && ./bin/point_test
 
