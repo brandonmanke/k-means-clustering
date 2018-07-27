@@ -27,7 +27,7 @@ default: main.o point.o matrix.o
 install:
 	$(GIT) submodule init && $(GIT) submodule update
 
-# $(TESTS) doesn't work matrix_test has linker error
+# matrix_test has linker error
 test: all_tests
 
 main.o: src/main.cc
@@ -56,8 +56,9 @@ matrix_test: matrix.o matrix_test.o gtest_main.a
 all_tests.o: $(TEST_DIR)/all_tests.cc $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/all_tests.cc -o build/all_tests.o
 
-all_tests: all_tests.o gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $(MATRIX_TEST_OBJ) $(POINT_TEST_OBJ) -o bin/$@
+# $(MATRIX_TEST_OBJ) & matrix_test broken
+all_tests: all_tests.o point_test gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $(POINT_TEST_OBJ) -o bin/$@
 
 # Clean
 clean:
