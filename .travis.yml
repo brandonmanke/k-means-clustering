@@ -1,6 +1,8 @@
 language: cpp
 install: make install
-compiler: gcc
+compiler: 
+  - gcc
+  - clang
 script: 
-  - make && make test && ./bin/point_test
+  - make && make test && ./bin/all_tests
 

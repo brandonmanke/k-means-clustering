@@ -1,7 +1,8 @@
 # C++
 *.o
 out
-test_out
+all_tests
+matrix_test
 point_test
 *.a
 
