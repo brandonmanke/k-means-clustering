@@ -12,11 +12,9 @@ public:
     Point();
     Point(const int dimension);
     Point(const std::vector<int> vec);
-    //Point(const int dimensions);
     Point(const int x, const int y);
     Point(const int x, const int y, const int z);
     Point operator +(const Point& p) const;
-    Point Sum(const Point& point) const;
     Point Scale(const int scalar) const;
     Point Shrink(const int scalar) const;
     int Distance(const Point& point) const; // Euclidean distance

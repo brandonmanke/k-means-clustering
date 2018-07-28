@@ -39,19 +39,17 @@ Point::Point(const int x, const int y, const int z) {
 
 //Point::~Point() { }
 
-//Point Point::Sum(const Point::Point& point) const { }
-
 /**
  * Point / Vector addition
  */
 Point Point::operator +(const Point& point) const {
     if (this->dimension != point.dimension) {
-        // We could be smart about this and take the bigger
-        // dimension and just add 0 to each number outside
-        // the dimension of the smaller vector. 
-        // return point of bigger dimension
-        std::cerr << "Cannot sum vectors of different dimensions" << std::endl;
-        throw std::exception();
+        // We could be smart about this and take the bigger dimension 
+        // and just add 0 to each number outside the dimension of the smaller vector 
+        // then return point of bigger dimension.
+        // Although this does not really make sense logically
+        std::string errMsg = "Cannot sum vectors of different dimensions";
+        throw std::logic_error(errMsg);
     }
     std::vector<int> newVec;
     for (int i = 0; i < this->dimension; i++) {
@@ -92,8 +90,8 @@ Point Point::Shrink(const int scalar) const {
  */
 int Point::Distance(const Point& point) const {
     if (this->dimension != point.dimension) {
-        std::cerr << "Cannot calculate distance of vectors of different dimensions" << std::endl;
-        throw std::exception();
+        std::string errMsg =  "Cannot calculate distance of vectors of different dimensions";
+        throw std::logic_error(errMsg);
     }
     int dist = 0;
     for (int i = 0; i < this->dimension; i++) {
@@ -109,15 +107,19 @@ std::vector<int> Point::GetVector() const {
 }
 
 int Point::GetIndex(const int index) const {
-    if (dimension > index && index >= 0) {
-        return this->vec.at(index);
+    if (index > dimension || index < 0) {
+        std::string errMsg = "GetIndex() index out of bounds";
+        throw std::out_of_range(errMsg);
     }
-    std::cerr << "GetIndex() index out of bounds" << std::endl;
-    throw std::exception();
+    return this->vec.at(index);
 }
 
 // probably doesnt work
 int Point::SetIndex(const int index, const int val) {
+    if (index > dimension || index < 0) {
+        std::string errMsg = "GetIndex() index out of bounds";
+        throw std::out_of_range(errMsg);
+    }
     int oldVal = this->vec.at(index);
     this->vec.at(index) = val;
     return oldVal;
