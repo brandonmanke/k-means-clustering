@@ -6,6 +6,7 @@
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
+#include <stdexcept>
 
 class Point {
 public:
