@@ -24,9 +24,14 @@ make docker-run # OR docker run -it --rm k-means-clustering
 ```
 
 Via your own compiler:
-(This may or may not work depending on your compiler)
+
+(This may or may not work depending on your compiler compatibility)
+
+([Travis CI](https://travis-ci.org/brandonmanke/k-means-clustering) is set up to build for both Clang & GCC)
 ```bash
-make && ./bin/out
+make test && ./bin/all_tests # To run all unit tests
+
+make && ./bin/out # For example output
 ```
 
 ## K-Means What?
