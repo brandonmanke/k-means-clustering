@@ -1,11 +1,10 @@
-// https://github.com/google/googletest
 #include <gtest/gtest.h>
 #include "../src/point.h"
 
 TEST(PointTest, NoArgConstructorTest) {
     Point p;
     ASSERT_EQ(p.GetDimension(), 0);
-    ASSERT_EQ(p.GetVector().empty(), true);
+    ASSERT_TRUE(p.GetVector().empty());
 }
 
 TEST(PointTest, ConstructorDimensionArgTest) {

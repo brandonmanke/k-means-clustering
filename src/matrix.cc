@@ -18,11 +18,13 @@ Matrix::Matrix(const std::vector<Point> matrix) {
             }
         }
     }
-    if (isMatrix) {
-        this->matrix = matrix;
-        this->rowCount = dimension;
-        this->colCount = matrix.size();
+    if (!isMatrix) {
+        std::string errMsg = "Cannot have vectors of different dimensions in the same matrix";
+        throw std::logic_error(errMsg);
     }
+    this->matrix = matrix;
+    this->rowCount = dimension;
+    this->colCount = matrix.size();
 }
 
 Matrix Matrix::GenerateRandomMatrix(const int row, const int col) {
@@ -138,6 +140,10 @@ int Matrix::ClassifyPoint(const Point& p, const Clusters& clust) const {
     return minCentroidIndex;
 }
 
+// I think I may refactor this and make it part of Matrix
+// Also our KMeans function does more than just classify 
+// Since it also prints the clusters, I think this should be a seperate
+// optional public function.
 void PrintClusters(const Clusters& c, const std::vector<Point>& centroids) {
     for (int i = 0; i < c.size(); i++) {
         std::cout << "Cluster " << i << ": " << "(Centroid = " 
@@ -166,6 +172,26 @@ Clusters Matrix::KMeansClustering(const int k, const int limit) const {
         PrintClusters(clust, centroids);
     }
     return clust;
+}
+
+std::vector<Point> Matrix::GetMatrix() const {
+    return this->matrix;
+}
+
+int Matrix::GetRowCount() const {
+    return this->rowCount;
+}
+
+int Matrix::GetColCount() const {
+    return this->colCount;
+}
+
+Point Matrix::GetCol(const int index) const {
+    if (index >= this->GetColCount() || index < 0) {
+        std::string errMsg = "GetCol() index out of bounds";
+        throw std::out_of_range(errMsg);
+    }
+    return this->matrix.at(index);
 }
 
 std::string Matrix::ToString() const {

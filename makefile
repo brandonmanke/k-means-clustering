@@ -27,7 +27,7 @@ install:
 	$(GIT) submodule init && $(GIT) submodule update
 
 # matrix_test has linker error
-test: all_tests
+test: $(TESTS)
 
 main.o: src/main.cc
 	$(CC) $(CFLAG) $(C11FLAG) src/main.cc -o $(BUILD_DIR)/$@
@@ -49,15 +49,15 @@ point_test: point.o point_test.o gtest_main.a
 matrix_test.o: $(TEST_DIR)/matrix_test.cc $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/matrix_test.cc -o $(BUILD_DIR)/$@
 
-matrix_test: matrix.o matrix_test.o gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $(MATRIX_TEST_OBJ) -o bin/$@
+matrix_test: point.o matrix.o matrix_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $(BUILD_DIR)/point.o $(MATRIX_TEST_OBJ) -o bin/$@
 
 all_tests.o: $(TEST_DIR)/all_tests.cc $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/all_tests.cc -o $(BUILD_DIR)/$@
 
 # $(MATRIX_TEST_OBJ) & matrix_test broken
-all_tests: all_tests.o point_test gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $(POINT_TEST_OBJ) -o bin/$@
+all_tests: point_test matrix_test all_tests.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $(POINT_TEST_OBJ) $(MATRIX_TEST_OBJ) -o bin/$@
 
 # Clean
 clean:

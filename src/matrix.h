@@ -6,6 +6,7 @@
 #include <limits>
 #include <sstream>
 #include <iostream>
+#include <stdexcept>
 
 // This just makes it easier to differentiate matrices and clusters
 // Even though they are pretty much the same thing (from a type perspective).
@@ -20,6 +21,11 @@ public:
     //~Matrix();
     Clusters KMeansClustering(const int k, const int limit) const;
     int ClassifyPoint(const Point& p, const Clusters& clust) const;
+    std::vector<Point> GetMatrix() const;
+    int GetRowCount() const;
+    int GetColCount() const;
+    Point GetCol(const int index) const;
+    // Consder GetRow(int index) ?
     std::string ToString() const;
 private:
     int rowCount;
